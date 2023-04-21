@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, Paper, Stack, styled, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+
 const StyledLink = styled(Link) `
 
   text-decoration: none;
@@ -29,18 +30,18 @@ const StyledPaper = styled(Paper) `
 
 `;
 
+
 const NotFound = () => {
 
   return (
     <Box sx={{ backgroundColor: theme => theme.palette.primary.main, height: "100vh" }}>
-      <Stack sx={{ height: "100%", width: "100%", textAlign: "center", px: 8 }} direction="column" justifyContent="center" alignItems="center" spacing={6}>
-        <Typography variant="h2" color="#fff">Whoops! You're lost!</Typography>
-        <Typography variant="h6" color="#fff">Looks like this page isn't a part of the typing test. Click on the button below to return to the homepage.</Typography>
+      <Stack sx={{ height: "100%", width: "100%", textAlign: "center", px: 5 }} direction="column" justifyContent="center" alignItems="center" spacing={6}>
+        <Typography sx={{ backgroundColor: "#fff", borderRadius: 10, px: 3, py: 3 }} variant="h2" fontWeight={700} color="#3C4551">Whoops!&nbsp; You're lost!</Typography>
+        <Typography sx={{ px: { xs: 0, md: 30 } }} variant="h6" color="#fff">Looks like you've typed yourself outside of the typing test.&nbsp; Click on the button below to return to the homepage.</Typography>
         <StyledLink to="/" ><StyledPaper elevation={10}>Return Home</StyledPaper></StyledLink>
       </Stack>
     </Box>
   );
-
 };
 
 export default NotFound;

@@ -2,12 +2,12 @@ import { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Stack, styled, Typography, useMediaQuery } from '@mui/material';
 
-import useRehabContext from '../hooks/useRehabContext';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useRehabContext from '../../hooks/useRehabContext';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-import scrabble from '../images/scrabble-letters.jpg';
-import typewriter from '../images/typewriter.jpg';
-import typing from '../images/typing-one.jpg';
+import scrabble from '../../images/scrabble-letters.jpg';
+import typewriter from '../../images/typewriter.jpg';
+import laptop from '../../images/typing-one.jpg';
 
 const LeftLink = styled(Link) `
 
@@ -67,7 +67,7 @@ const RightLink = styled(Link)`
   background: linear-gradient(
     rgba(0, 0, 0, 0.5),
     rgba(0, 0, 0, 0.5)
-  ), url(${typing});
+  ), url(${laptop});
   background-size: cover;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
   height: 225px;
@@ -142,7 +142,7 @@ const RightMobileLink = styled(Link)`
   background: linear-gradient(
     rgba(0, 0, 0, 0.5),
     rgba(0, 0, 0, 0.5)
-  ), url(${typing});
+  ), url(${laptop});
   background-size: cover;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
   height: 125px;

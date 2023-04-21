@@ -1,19 +1,20 @@
-import { Fragment, useState, useEffect, useCallback } from 'react';
-import { IconButton, Paper, Stack, styled, TextField } from '@mui/material';
+import { Fragment, useState, useCallback } from 'react';
+import { IconButton, Paper, Stack, styled } from '@mui/material';
 import { flexCenter } from '../theme/CustomTheme';
+import "../style/letters.css";
 
 import useRehabContext from '../hooks/useRehabContext';
+import useOnChange from '../hooks/useOnChange';
 
 import { FaRedo } from 'react-icons/fa';
 import { FaPause } from 'react-icons/fa';
 import { FaPlay } from 'react-icons/fa';
 import { FaBook } from 'react-icons/fa';
-
-import { v4 as uuidv4 } from 'uuid';
+import Icons from './Icons';
 
 // which input event should start the timer? onChange or something else?
 // onChange occurs when the value of the input has changed...
-// onKeyDown occures when a key in the keyboard has been pressed...
+// onKeyDown occurs when the key in the keyboard has been pressed...
 
 // Notes:
 // Like hangman app, create two arrays to check if wordX in array1 matches wordX in array2: which is the typed letter vs the randomized letter. Then, perhaps, a third and fourth array, that houses right / wrong letters.  Create 3rd and 4th array as such: to house right letters and wrong letters, and then eventually, create a function to find the total of the most wrong letters.
@@ -31,7 +32,7 @@ import { v4 as uuidv4 } from 'uuid';
 // create array4 to house the correct letters (optional)
 
 // Notes:
-// (selected element) + innerHTML is the equivalent to inserting the data inside a parenthesis between an element in React
+// (selected element) + innerHTML is the equivalent of inserting the data inside brackets between an element in React
 // input event listener is the equivalent to the keyDown event
 
 const ResetButton = styled(IconButton) `
@@ -99,148 +100,15 @@ const StoryButton = styled(IconButton) `
 
 `;
 
-const Input = ({ data, input, minutes, setMinutes, setSeconds, setIsParagraph, setInput }) => {
+
+const Input = ({ data, minutes, setMinutes, setSeconds, setIsParagraph }) => {
 
   const context = useRehabContext();
-  const { isPaused, startTimer, endTimer, pauseTest, playTest } = context;
+  const { isPaused, endTimer, pauseTest, playTest } = context;
 
-  const [ letterIndex, setLetterIndex ] = useState(0);
+  const [ input, setInput ] = useState("");
 
-  const id = uuidv4();
-
-  // Notes: eventually, use event's (e), to track the typed letters of the paragraph
-
-  // Notes: everytime I type the paragraph gets re-rendered.. need to stop
-
-  // Option 1:
-  // select the element via getElementById(), which leads to the selection of the newly-created span elements via querySelectorAll('span')
-
-  useEffect(() => {
-
-    console.log(input);
-
-  }, [input]);
-
-
-  // compare letters every time the user presses the key
-  const onKeyDown = (event) => {
-
-    startTimer();
-
-    let key = event.key || event.code;
-
-    // this equals all characters typed in the input: letters, quotations, spacebar, shift, capslock; which needs to be filtered via if-statement? Or, instead of taking out the special keys, just include the letters and see if that works?
-    // console.log(key);
-
-    if(key >= "KeyA" && key <= "KeyZ" || key >= "a" && key <= "z" || key === "Quote" || key === "Space"){
-
-      // if these keys are hit.. run function to check if the letters the match
-      checkLetters();
-
-      // increase the letter index by +1
-      setLetterIndex(prev => prev + 1);
-
-      console.log(key);
-
-    };
-
-      // if(data.includes(letter)){};
-
-      // letter is the current value
-      // index is the letter's position in the array
-      data.split("").forEach((letter, index) => {
-
-        // gives me every character: letters, semi-colo, apostraphe
-        // console.log(letter);
-
-
-        // const character = letter[0];
-        // const characterA = letter[1];
-        // const characterB = letter[2];
-
-        // Issue: the function is grabbing the index which is the letter's position and first letter of the array.. which works
-
-
-
-        // console.log(`My index is ${index} and value is ${letter}`);
-
-      });
-
-
-      // for(let i = 0; i < data.length; i++){
-
-      //   const character = data[i];
-
-      //   console.log(character);
-
-      //   // if(letterKey === character){
-
-      //   //   console.log("you typed the right letter");
-
-      //   // } else {
-
-      //   //   console.log("you typed the wrong letter")
-
-      //   // };
-
-      // };
-
-    if(key === " " || key === "Space"){
-
-      // check if the word matches after pressing the spacebar
-      console.log("you pressed the space bar");
-
-    };
-
-    // check if the character matches after pressing the character key
-    // if(key === data[index]){
-
-    // };
-
-    // consoles key pressed on keydown
-    // console.log(e.key);
-
-  };
-
-  const onChange = (e) => {
-
-    setInput(e.target.value);
-
-
-    // Note: the letter check could be housed inside the onChange event listener..
-    // data.split("").forEach((letter, index) => {
-
-    //   const character = data[index];
-
-    // });
-
-  };
-
-
-    // const match = check === input.trim();
-    // if(input.trim() === data){
-    //   console.log("Yes this works!")
-    // };
-
-
-  const checkLetters = () => {
-
-    const letter = data[letterIndex].toLowerCase();
-
-    // selects the first character in the paragraph string
-    console.log(letter);
-
-    if(letter === input){
-
-      console.log("the first letter matches");
-
-    } else {
-
-      console.log("this doesn't work, bro");
-
-    };
-
-  };
+  useOnChange(data, input);
 
 
   const pauseClick = () => {
@@ -256,7 +124,7 @@ const Input = ({ data, input, minutes, setMinutes, setSeconds, setIsParagraph, s
 
   };
 
-  // need to clear the input value too
+
   const resetClick = () => {
 
     endTimer();
@@ -282,7 +150,6 @@ const Input = ({ data, input, minutes, setMinutes, setSeconds, setIsParagraph, s
 
   };
 
-  // randomize new paragraph excerpt too
   const storyClick = () => {
 
     resetClick();
@@ -290,30 +157,55 @@ const Input = ({ data, input, minutes, setMinutes, setSeconds, setIsParagraph, s
 
   };
 
-  // gives me the first three letters of the paragraph
-  // console.log(data[0], data[1], data[2]);
+  const setFocus = useCallback((el) => {
+
+    el?.focus();
+
+    if(isPaused){
+
+      el?.blur();
+
+    };
+
+  }, [ resetClick, playClick ]);
 
   return (
 
     <Fragment>
+
       <Stack direction="column" justifyContent="center" alignItems="center" spacing={3}>
-        <Paper sx={{ ...flexCenter, width: { xs: "400px", md: "600px", lg: "1000px" }, height: "150px", borderRadius: 5 }} elevation={10}>
 
-          {/* { paragraphs.length !== 0 && paragraphs.map((paragraph) => (
+        <input ref={setFocus} style={{ opacity: 0, zIndex: -10, position: "absolute" }} type="text" spellCheck="false" value={input} onChange={(e) => setInput(e.target.value)} />
 
-            <Fragment key={id}>
+        <Paper sx={{ width: { xs: "400px", md: "600px", lg: "1000px" }, height: "150px", borderRadius: 5, px: 2, py: 6 }} elevation={10}>
 
-              { paragraph.split().map((chars, index) => (
+          <Stack sx={{ width: "100%", height: "100%" }} direction="row" justifyContent="space-between" alignItems="center" spacing={1}>
 
-                <TextField key={index} variant="standard" value={chars} sx={{ width: "95%" }} InputProps={{ sx: { fontSize: "50px" }, disableUnderline: true }} autoFocus={true} onKeyDown={onKeyDown} onChange={onChange} />
+            <Icons data={data} />
 
-              )) }
+            <div style={{ fontSize: "40px", whiteSpace: "nowrap", userSelect: "none", overflow: "hidden" }}>
 
-            </Fragment>
+              { data.excerpt?.split("").map((char, charId) => {
 
-          )) } */}
+                  let style;
 
-          <TextField variant="standard" value={input} sx={{ width: "95%" }} InputProps={{ sx: { fontSize: "50px" }, disableUnderline: true }} autoFocus={true} onKeyDown={onKeyDown} onChange={onChange} />
+                  if(charId < input.length){
+
+                  style = char === input[charId] ? "correct" : "incorrect"
+
+                  };
+
+                  return (
+
+                    <span key={char + charId} className={style}>{char}</span>
+
+                  );
+
+              })}
+
+            </div>
+
+          </Stack>
 
         </Paper>
 
@@ -327,7 +219,7 @@ const Input = ({ data, input, minutes, setMinutes, setSeconds, setIsParagraph, s
 
             <PauseButton title="Pause" onClick={pauseClick}><FaPause color="#fff" size={35} /></PauseButton>
 
-          )}
+          ) }
 
           <ResetButton title="Reset" onClick={resetClick}><FaRedo color="#fff" size={35} /></ResetButton>
 

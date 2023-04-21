@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Box, Stack } from '@mui/material';
 
-import useRehabContext from '../hooks/useRehabContext';
-import useTimer from '../hooks/useTimer';
-import useParagraph from '../hooks/useParagraph';
-import useLocalStorage from '../hooks/useLocalStorage';
+import useRehabContext from '../../hooks/useRehabContext';
+import useTimer from '../../hooks/useTimer';
+import useParagraph from '../../hooks/useParagraph';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
-import Input from './Input';
-import Timer from './Timer';
-import Reader from './Reader';
+import Timer from '../Timer';
+import Title from '../Title';
+import Input from '../Input';
+import Results from '../Results';
 
 // reset button (done)
 // countdown timer (done)
 // typing starts the app (done)
-// load story into textfield
+// load story into textfield (done)
 // top half is the textfield while bottom half loads results: wpm, accuracy, top 5 missed letters
 
 const Test = () => {
@@ -23,12 +24,10 @@ const Test = () => {
 
   const [ minutes, setMinutes ] = useState(0);
   const [ seconds, setSeconds ] = useState(0);
-  const [ input, setInput ] = useState("");
 
   useTimer(minutes, seconds, setMinutes, setSeconds);
 
-  // insert typed letters into the custom hook so I can create separate functions for correct and incorrect letters for tracking?
-  const [ data, setIsParagraph ] = useParagraph(input);
+  const [ data, setIsParagraph ] = useParagraph();
 
   const getLocal = useLocalStorage();
   const getNumber = Number(getLocal.slice(2, 3));
@@ -75,19 +74,20 @@ const Test = () => {
 
   // Note: resolve the inquiry about the paragraph data in a separate reader before resolving the paragraph in the same input as the typer
 
-  // Box: height -- 100vh
-
   return (
 
     <Box sx={{ height: "100vh", backgroundColor: theme => theme.palette.primary.main }}>
-      <Stack sx={{ height: "100%" }} direction="column" justifyContent="center" alignItems="center" spacing={3}>
 
+      <Stack sx={{ position: "fixed", width: "100%", backgroundColor: "transparent", zIndex: 5, px: 3, py: 3 }} direction="row" justifyContent="space-around" alignItems="center">
         <Timer minutes={minutes} seconds={seconds} />
-        <Input data={data} input={input} setIsParagraph={setIsParagraph} minutes={minutes} setMinutes={setMinutes} setSeconds={setSeconds} setInput={setInput} />
-        <Reader data={data} input={input} />
-
+        <Title data={data} />
       </Stack>
-  </Box>
+
+      <Stack sx={{ height: "100%" }} direction="column" justifyContent="center" alignItems="center" spacing={3}>
+        <Input data={data} minutes={minutes} setMinutes={setMinutes} setSeconds={setSeconds} setIsParagraph={setIsParagraph} />
+        <Results />
+      </Stack>
+    </Box>
 
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useRehabContext from './useRehabContext';
 
-import paragraphs from '../data/paragraphs.json';
+import excerpts from '../data/excerpts.json';
 
 const useParagraph = () => {
 
@@ -9,22 +9,9 @@ const useParagraph = () => {
   const { testPage, oneMin, threeMin, fiveMin } = context;
 
   const [ isParagraph, setIsParagraph ] = useState(false);
+  const [ data, setData ] = useState({ title: "", chapter: "", excerpt: "" });
 
-  // selected paragraph
-  const [ data, setData ] = useState("");
-
-  // correct letters: typed letters are insert into this array and used again to be given a class of green
-  const [ correctLetters, getCorrectLetters ] = useState([]);
-
-  // wrong letters: typed letters are insert into this array and used again to be given a class of red and strike-thru
-  const [ wrongLetters, getWrongLetters ] = useState([]);
-
-  // initialize three different variables based on length: oneMinute, threeMinute, and fiveMinute
-  let typeData = paragraphs.paragraphs;
-
-  // index = means the index of the current element processed in the array
-
-  // Note: I could also receive the index from method map(), which is what Brad used for the Hangman App
+  // initialize three different variables based on length: oneMinute, threeMinute, and fiveMinute?
 
   useEffect(() => {
 
@@ -39,52 +26,44 @@ const useParagraph = () => {
 
   useEffect(() => {
 
+    // 1min paragraph
     if(oneMin && isParagraph){
 
-      let random = typeData[Math.floor(Math.random() * typeData.length)];
+      let random = excerpts[Math.floor(Math.random() * excerpts.length)];
 
+      let randomTitle = random.title;
+      let randomChapter = random.chapter;
       let randomExcerpt = random.excerpt;
 
-      // breaks the excerpt into separate letters inside their own array
-      let test = randomExcerpt.split("");
-
-      // letter is the current element processed in the array, while index is the index of the current element processed in the array
-      randomExcerpt.split("").map((letter, index) => `
-
-        <span>
-          ${letter}
-        </span>
-
-      `);
-
-      // Thought: as setState Hook is returning one character at a time and NOT the whole paragraph; however, "randomExcerpt" could be the data used for the element but "letter" can be the logic used for identifying the typed letters.. yes?
-
-      return setData(randomExcerpt);
+      setData({ title: randomTitle, chapter: randomChapter, excerpt: randomExcerpt });
 
     };
 
-
+    // 3min paragraph
     if(threeMin && isParagraph){
 
-      let random = typeData[Math.floor(Math.random() * typeData.length)];
+      let random = excerpts[Math.floor(Math.random() * excerpts.length)];
 
+      let randomTitle = random.title;
+      let randomChapter = random.chapter;
       let randomExcerpt = random.excerpt;
 
-      setData(randomExcerpt);
+      setData({ title: randomTitle, chapter: randomChapter, excerpt: randomExcerpt });
 
     };
 
-
+    // 5min paragraph
     if(fiveMin && isParagraph){
 
-      let random = typeData[Math.floor(Math.random() * typeData.length)];
+      let random = excerpts[Math.floor(Math.random() * excerpts.length)];
 
+      let randomTitle = random.title;
+      let randomChapter = random.chapter;
       let randomExcerpt = random.excerpt;
 
-      setData(randomExcerpt);
+      setData({ title: randomTitle, chapter: randomChapter, excerpt: randomExcerpt });
 
     };
-
 
     // eslint-disable-next-line
   }, [isParagraph]);

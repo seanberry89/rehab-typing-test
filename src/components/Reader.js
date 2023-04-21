@@ -1,92 +1,130 @@
-import { Fragment } from 'react';
-import { Box, Paper, Typography } from '@mui/material';
+import { Fragment, useState } from 'react';
+import { Box, Paper, TextField } from '@mui/material';
 
-import { v4 as uuidv4 } from 'uuid';
+import useKeyDown from '../hooks/useKeyDown';
+import useKeyPress from '../hooks/useKeyPress';
 
-import "../style/letters.css";
+const Reader = ({ input, setInput }) => {
 
-// split() splits a string into an array of substrings, which uses the delimiter as the parameter to divide each string (from sting to array)
+  // like the other video, I could move the index/character manually with state
+  const [ currentCharacter, setCurrentCharacter ] = useState({ id: 0, key: "" });
 
-// or, supposedly, spread operator [...blank] of a string inside an array via spread operator, can split a string into substrings inside an array
-
-// split("").forEach((character) => {}) returns each character from the substring, which would be useful if I was returning a new component..
-
-// join() joins substrings from an array into a single string, which uses the delimiter as the parameter to combine each string (from array to string)
-
-// charAt() returns the character from a string based on the specified index as the parameter: 0, 1, length - 1, or other
+  const [ index, setIndex ] = useState(0);
 
 
-const Reader = ({ data, input }) => {
+  // useKeyPress((key) => {
 
-  const id = uuidv4();
+  //   // this iterates through the whole list, matching and not matching, so perhaps iterate outside of hook beforehand..? Maybe save as a ref..? Then insert into hook?
+  //   // for(var i = 0; i < data.length; i++ ){ };
 
-  // this method grabs the string of each letter in an array, so make this a variable and then compare to the typed letters
+  //     // gives me the letter index from the paragraph
+  //     // console.log(i);
 
-  // data.slice("").map((item) => {
-  //   // this grabs the whole paragraph (all of the split letters)
-  //   console.log(item);
-  //   console.log(item[0]);
-  //   console.log(item[2]);
-  //   // this doesn't capture the blank spaces, so this grabs the "s" of a new word
-  //   console.log(item[5]);
+  //     // // gives me each letter from the paragraph
+  //     // console.log(data[i]);
+
+
+  //     // data.split("").forEach((char, charId) => { });
+
+
+  //     // conditional for when the user presses the keyboard to match the letter
+  //     // Note: this matches now.. but look into alternative ways to match
+  //     // Note: data.split("").forEach doesn't work... need a new alternative
+  //     if(key === currentCharacter){
+
+  //       getCorrectLetters(prev => [ ...prev, { id: currentCharacter.id, key: currentCharacter.key } ]);
+
+  //       setCurrentCharacter(prev => {
+  //         return {
+  //           id: prev + 1,
+  //           key: data?.charAt(prev + 1)
+  //         }
+  //       });
+
+  //       console.log("this works!");
+
+  //     } else if(key !== currentCharacter) {
+
+  //       if(wrongLetters.find( item => item.key === currentCharacter.key && item.id === currentCharacter.id )){
+
+  //         return null;
+
+  //       } else {
+
+  //         getWrongLetters(prev => [ ...prev, { id: currentCharacter.id, key: currentCharacter.key } ]);
+
+  //         setCurrentCharacter(prev => {
+  //           return {
+  //             id: prev + 1,
+  //             key: data?.charAt(prev + 1)
+  //           }
+  //         });
+
+  //         console.log("this doesn't work...");
+
+  //       };
+
+  //     };
+
+  //     // conditional for when the user presses the space button
+  //     if(key === " "){
+
+  //     };
+
+  //     // conditional for when the user presses the backspace
+  //     if(key === "Backspace"){
+
+  //     };
+
   // });
 
-  // Notes:
-  // check the typing of the event.target.value with the letters in the array
+  // Works! Got the first character now.
+  // Note: re-render issue as the first render doesn't give me the character
+  // useEffect(() => {
 
-  // "randomExcerpt" vs "letter" in a returned component:
-  // need to select and return each letter so I can affect each letter in the reader, such as color and strike-thru the letters when they're wrong or right...
+  //   setCurrentCharacter({ id: 0, key: data?.charAt(0) });
 
+  // }, [data]);
 
-  // method found in keyDown
-  const updateCorrectLetters = () => {
-
-
-  };
+  // useKeyDown(data);
 
 
-  // method found in keyDown
-  const updateWrongLetters = () => {
+  // this gives me the first letter of paragraph
+  // console.log(data.charAt(0));
 
-
-  };
-
-  // Notes:
-  // What if I store the typed letters in separate states, correct and incorrect, and if they match the typed letters then they become red or green?
-
-  // Option 1:
-  // sx={{ color: { correct ? "red" : "blue" } }};
-
-  // Option 2:
-  // create a child component that returns a span with the paragraph data for each letter, which then I would use className for correct and incorrect letters
-
-  // Paper -- 1000px width + 200px height
+  // Previous Paper Dimensions: width 1000px / height 200px
 
   return (
 
     <Fragment>
       <Box sx={{ px: 10 }}>
-      <Paper sx={{ width: "1000px", height: "200px", px: 2, py: 2 }} elevation={10}>
+      <TextField autoFocus={true} spellCheck="false" onChange={(e) => setInput(e.target.value)} />
+      <Paper sx={{ width: { xs: "400px", md: "600px", lg: "1000px" }, height: "150px", borderRadius: 5, overflow: "hidden", fontSize: "35px", whiteSpace: "nowrap", userSelect: "none", px: 2, py: 2 }} elevation={10}>
 
-        { data?.split('<span>').map((letter, index) =>
+          {/* { data?.split("").map((char, charId) => {
 
-          <Box key={index}>
+              let style;
 
-            {/* { use if/else operator to color the letters } */}
-            {/* Example: { correctLetters.includes(letter) ? letter : ' ' } */}
-            <Typography id="reader" component="p" fontSize={16} variant="body1">
-                {letter}
-            </Typography>
+              if(index < input.length){
 
-          </Box>
+              style = char === input[index] ? "correct" : "incorrect"
 
-        )}
+              };
+
+              return (
+
+                <span key={char + charId}>{char}</span>
+
+              );
+
+          })} */}
 
       </Paper>
       </Box>
     </Fragment>
 
   );
+
 };
 
 export default Reader;

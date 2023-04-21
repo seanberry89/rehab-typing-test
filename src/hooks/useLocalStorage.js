@@ -25,8 +25,7 @@ const useLocalStorage = () => {
 
   };
 
-
-  // setLocalMinutes / setLocalParagraph / or randomize paragraph on page refresh
+  
   const setLocalStorage = (value) => {
 
     localStorage.setItem("minutes", value);

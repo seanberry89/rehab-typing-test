@@ -31,7 +31,6 @@ const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
 
       }, 1000);
 
-
       return () => {
 
         clearInterval(intervalOne.current);
@@ -73,13 +72,14 @@ const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
   }, [seconds, isPaused]);
 
 
+  // handles timer end
   useEffect(() => {
 
     if(minutes === 0 && seconds === 0){
 
       endTimer();
 
-    }
+    };
 
     // eslint-disable-next-line
   }, [minutes, seconds]);

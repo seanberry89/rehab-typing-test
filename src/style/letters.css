@@ -1,11 +1,14 @@
 .correct {
 
   color: green;
+  font-weight: 500;
 
-};
+}
 
 .incorrect {
 
   color: red;
+  font-weight: 500;
+  text-decoration: line-through;
 
-};
+}

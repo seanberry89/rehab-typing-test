@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Divider, Paper, Stack, styled, IconButton, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { flexCenter } from '../theme/CustomTheme';
+import { flexCenter } from '../../theme/CustomTheme';
 
-import RehabLogo from '../images/rehab-therapy-logo.png';
+import RehabLogo from '../../images/rehab-therapy-logo.png';
 
 
 const StartLink = styled(Link) `
