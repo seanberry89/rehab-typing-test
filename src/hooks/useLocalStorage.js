@@ -1,40 +1,26 @@
 import { useState, useEffect } from 'react';
-import useRehabContext from './useRehabContext';
 
-const useLocalStorage = () => {
+const useLocalStorage = (defaultValue, key) => {
 
-  const context = useRehabContext();
-  const { testPage } = context;
 
-  const [ getLocal, getLocalStorage ] = useState("");
+  const [ value, setValue ] = useState(() => {
+
+    const localItem = localStorage.getItem(key);
+
+    return localItem !== null ? JSON.parse(localItem) : defaultValue;
+
+  });
 
 
   useEffect(() => {
 
-    const item = localStorage.getItem("minutes");
+    localStorage.setItem(key, JSON.stringify(value));
 
-    getLocalStorage(item);
-
-    // eslint-disable-next-line
-  }, [testPage]);
+  }, [value]);
 
 
-  const removeLocalStorage = () => {
+  return [ value, setValue ];
 
-    localStorage.removeItem("minutes");
-
-  };
-
-  
-  const setLocalStorage = (value) => {
-
-    localStorage.setItem("minutes", value);
-
-  };
-
-
-  return [ setLocalStorage, removeLocalStorage, getLocal ];
-
-};
+}
 
 export default useLocalStorage;

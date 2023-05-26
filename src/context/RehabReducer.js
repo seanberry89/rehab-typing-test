@@ -1,4 +1,4 @@
-import { SET_ONE_MIN, SET_THREE_MIN, SET_FIVE_MIN, START_TIMER, END_TIMER, PAUSE_TEST, PLAY_TEST, ENTER_TEST, EXIT_TEST, APP_ERROR, SET_LOADING } from './actions';
+import { SET_ONE_MIN, SET_THREE_MIN, SET_FIVE_MIN, START_TIMER, END_TIMER, PAUSE_TEST, PLAY_TEST, EXIT_TEST, ENTER_RESULTS, EXIT_RESULTS, SET_LOADING } from './actions';
 
 
 const RehabReducer = (state, action) => {
@@ -45,34 +45,43 @@ const RehabReducer = (state, action) => {
     case SET_LOADING:
       return {
         ...state,
-        isLoading: action.payload
+        loading: action.payload
       }
 
     case PAUSE_TEST:
       return {
         ...state,
-        isPaused: true
+        isPaused: true,
+        timer: false
       }
 
     case PLAY_TEST:
       return {
         ...state,
-        isPaused: false
-      }
-
-    case ENTER_TEST:
-      return {
-        ...state,
-        testPage: true,
-
-        // maybe fix this: wanted to prolong loading component
-        isLoading: true
+        isPaused: false,
+        timer: true
       }
 
     case EXIT_TEST:
       return {
         ...state,
-        testPage: false,
+        results: false,
+        timer: false,
+        isPaused: false,
+      }
+
+    case ENTER_RESULTS:
+      return {
+        ...state,
+        results: true,
+        timer: false,
+        isPaused: false
+      }
+
+    case EXIT_RESULTS:
+      return {
+        ...state,
+        results: false,
         timer: false,
         isPaused: false
       }

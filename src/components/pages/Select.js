@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Box, Stack, styled, Typography, useMediaQuery } from '@mui/material';
 
 import useRehabContext from '../../hooks/useRehabContext';
-import useLocalStorage from '../../hooks/useLocalStorage';
 
 import scrabble from '../../images/scrabble-letters.jpg';
 import typewriter from '../../images/typewriter.jpg';
@@ -159,45 +158,29 @@ const RightMobileLink = styled(Link)`
 
 `;
 
-// Note: set, get, and remove local storage for generated paragraph too or randomize a new paragraph when user restarts page
 
 const Select = () => {
 
   const context = useRehabContext();
-  const { setOneMin, setThreeMin, setFiveMin, testPage, exitTest } = context;
+  const { setOneMin, setThreeMin, setFiveMin, exitTest } = context;
 
-  const [ setLocalStorage, removeLocalStorage ] = useLocalStorage();
-
+  const mobile = useMediaQuery('(max-width: 600px)');
 
   useEffect(() => {
 
     exitTest();
-    removeLocalStorage();
+
+    localStorage.removeItem("minutes");
+    localStorage.removeItem("seconds");
+    localStorage.removeItem("data");
 
     // eslint-disable-next-line
-  }, [testPage]);
-
-
-  const mobile = useMediaQuery('(max-width: 600px)');
-
-
-  // other method for preventing stale state
-
-  // const updateTime = (newState) => {
-
-  //   minutesRef.current = newState;
-
-  //   setMinutes(newState);
-
-  //   setSeconds(0);
-
-  // };
+  }, []);
 
 
   const clickOne = () => {
 
     setOneMin();
-    setLocalStorage(1);
 
   };
 
@@ -205,7 +188,6 @@ const Select = () => {
   const clickThree = () => {
 
     setThreeMin();
-    setLocalStorage(3);
 
   };
 
@@ -213,7 +195,6 @@ const Select = () => {
   const clickFive = () => {
 
     setFiveMin();
-    setLocalStorage(5);
 
   };
 

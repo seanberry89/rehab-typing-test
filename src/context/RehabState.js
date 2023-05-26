@@ -1,7 +1,7 @@
 import { useReducer, useMemo } from 'react';
 import { RehabContext } from './RehabContext';
 import RehabReducer from './RehabReducer';
-import { SET_ONE_MIN, SET_THREE_MIN, SET_FIVE_MIN, START_TIMER, END_TIMER, PAUSE_TEST, PLAY_TEST, ENTER_TEST, EXIT_TEST, APP_ERROR, SET_LOADING } from './actions';
+import { SET_ONE_MIN, SET_THREE_MIN, SET_FIVE_MIN, START_TIMER, END_TIMER, PAUSE_TEST, PLAY_TEST, EXIT_TEST, ENTER_RESULTS, EXIT_RESULTS, SET_LOADING } from './actions';
 
 const initialState = {
 
@@ -9,13 +9,11 @@ const initialState = {
   threeMin: false,
   fiveMin: false,
 
-  testPage: false,
   timer: false,
   isPaused: false,
 
-  letters: [],
-  isLoading: false,
-  error: null
+  results: false,
+  loading: false
 
 };
 
@@ -27,8 +25,9 @@ const RehabState = ({children}) => {
 
     ...state,
 
-    enterTest: () => { dispatch({ type: ENTER_TEST }) },
     exitTest: () => { dispatch({ type: EXIT_TEST }) },
+    enterResults: () => { dispatch({ type: ENTER_RESULTS }) },
+    exitResults: () => { dispatch({ type: EXIT_RESULTS }) },
 
     setOneMin: () => { dispatch({ type: SET_ONE_MIN }) },
     setThreeMin: () => { dispatch({ type: SET_THREE_MIN }) },
@@ -53,7 +52,7 @@ const RehabState = ({children}) => {
       {children}
 
     </RehabContext.Provider>
-  )
-}
+  );
+};
 
 export default RehabState;

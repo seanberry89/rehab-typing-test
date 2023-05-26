@@ -1,53 +1,226 @@
 import { useEffect, useState } from 'react';
+import { typingKeys } from '../data/Other';
 import useRehabContext from './useRehabContext';
+
+let countdown;
+let delay = 8000;
+
 
 const useKeyDown = (data) => {
 
-  const { startTimer } = useRehabContext();
+  const { timer, isPaused, results, startTimer } = useRehabContext();
 
-  const [ character, getCharacter ] = useState("");
-  const [ index, getIndex ] = useState(0);
+  const [ current, setCurrent ] = useState([]);
+  const [ incoming, setIncoming ] = useState(data.excerpt);
+  const [ outgoing, setOutgoing ] = useState([]);
 
-  const [ correctLetters, getCorrectLetters ] = useState([{ id: 0, key: "" }]);
-  const [ wrongLetters, getWrongLetters ] = useState([{ id: 0, key: "" }]);
+  const [ correctChar, setCorrectChar ] = useState([{ id: 0, key: "" }]);
+  const [ incorrectChar, setIncorrectChar ] = useState([{ id: 0, key: "" }]);
 
-  // const [ keydown, setKeydown ] = useState([]);
-  // const [ keyIndex, setKeyIndex ] = useState(0);
+  const [ isBlink, setIsBlink ] = useState(true);
 
-  const matchLetters = (key) => {
 
-    console.log("this works...");
+  useEffect(() => {
 
-    data.split("").forEach((char, charId) => {
+    // updates state current to be the first character of paragraph
+    // setCurrent(data?.excerpt.charAt(0));
+    setCurrent(data.excerpt.slice(0, 1));
 
-      // what if I add up the total keys until index amount then if statement could read if "total amount" !== index || charId < "adding of keys" variable
+    // updates state incoming to be the second character of paragraph + rest of string
+    // setIncoming(data?.excerpt.substring(1));
+    setIncoming(data.excerpt.slice(1));
 
-      // Issue: each key is just going to the length of 1.. right?
-      // Thought: what if I create a variable ceiling for the keys to get to?
+    // eslint-disable-next-line
+  }, [data]);
 
-      if(char === key[charId]){
 
-        console.log("key matches so green");
+  // keydown / keyup for updating user typing
+  useEffect(() => {
 
-        getCorrectLetters(char);
+    document.onkeydown = (e) => {
 
-        // setKeyIndex(prev => prev + 1);
+      let key = e.key;
 
-      } else if(char !== key[charId]) {
+      // conditional to start timer after the first character
+      if(!timer && !isPaused){
 
-        console.log("key doesn't match so red");
+        startTimer();
 
-        if(wrongLetters.find(item => item.key === char && item.id === charId)){
+      };
+
+      // conditional for when the user types ONLY the characters in the array
+      if(!results && typingKeys.includes(key)){
+
+        clearTimeout(countdown);
+
+        if(isBlink){
+
+          setIsBlink(false);
+
+        };
+
+        if(!timer){
+
+          return;
+
+        } else {
+
+          updateLetters(key);
+
+          e.preventDefault();
+
+         };
+
+      };
+
+      // conditional for when the user deletes a typed character
+      if(key === "Backspace"){
+
+        if(!timer){
+
+          return;
+
+        } else {
+
+          deleteLetters();
+
+          e.preventDefault();
+
+        };
+
+      };
+
+    };
+
+    document.onkeyup = () => {
+
+      clearTimeout(countdown);
+
+      countdown = setTimeout(() => {
+
+        setIsBlink(true);
+
+      }, delay);
+
+    }
+
+    return () => {
+
+      document.onkeydown = null;
+      document.onkeyup = null;
+
+    };
+
+  // no dependency means effect hook runs on every render
+  });
+
+
+  const updateLetters = (key) => {
+
+    // outgoing gets updated by the previous state + current state
+    current.map((item) => {
+
+      if(item.key === key){
+
+        setOutgoing(prev => [ ...prev, {
+
+          id: item.id,
+          correct: item.key
+
+        }])
+
+        if(correctChar.find(i => i.key === item.key && i.id === item.id)){
 
           return null;
 
         } else {
 
-          getWrongLetters(prev => [ ...prev, { id: charId, key: char } ]);
-
-          // setKeyIndex(prev => prev + 1);
+          setCorrectChar(prev => [ ...prev, { id: item.id, key: item.key } ]);
 
         };
+
+      } else if(item.key !== key){
+
+        setOutgoing(prev => [ ...prev, {
+
+          id: item.id,
+          incorrect: item.key
+
+        }])
+
+        if(incorrectChar.find(i => i.key === item.key && i.id === item.id)){
+
+          return null;
+
+        } else {
+
+          setIncorrectChar(prev => [ ...prev, { id: item.id, key: item.key } ]);
+
+        };
+
+      };
+
+    });
+
+    // current updates the first character of state incoming
+    setCurrent(incoming.slice(0, 1));
+
+    // incoming updates the second character of state incoming + rest of paragraph
+    setIncoming(incoming.slice(1));
+
+  };
+
+
+  const deleteLetters = () => {
+
+    outgoing.map((item, index, arr) => {
+
+      // filters last item in the index
+      if(arr.length - 1 === index){
+
+        const { id, correct, incorrect } = item;
+
+        // deletes prev outgoing char
+        setOutgoing(prev => prev.filter(item => item.id !== id));
+
+        if(correct){
+
+          // adds deleted outgoing character (correct) to current state
+          setCurrent([{
+            id: id,
+            key: correct
+          }]);
+
+        };
+
+        if(incorrect){
+
+          // adds deleted outgoing character (incorrect) to current state
+          setCurrent([{
+            id: id,
+            key: incorrect
+          }]);
+
+        };
+
+        current.map((item) => {
+
+          const { id, key } = item;
+
+          // removes previous current state
+          setCurrent(prev => prev.filter(item => item.id !== id));
+
+          // adds deleted current state to be first character of state incoming
+          setIncoming(prev => [{
+            id,
+            key
+          }, ...prev ]);
+
+        })
+
+      } else {
+
+        return;
 
       };
 
@@ -56,153 +229,9 @@ const useKeyDown = (data) => {
   };
 
 
+  return [ incoming, current, outgoing, incorrectChar, correctChar, isBlink, setIncoming, setCurrent, setOutgoing, setIncorrectChar, setCorrectChar ];
 
-  // useEffect(() => {
 
-  //   document.onkeydown = (e) => {
-
-  //     let key = e.key;
-  //     let shift = key === "Shift";
-  //     let caps = key === "CapsLock";
-  //     let alt = key === "Alt";
-
-  //     // boolean for true when keydown equals only a letter
-  //     const letter = key.length === 1 && key !== " ";
-
-  //     // conditional that doesn't read keydown of shift, caps, alt
-  //     // if(!shift && !caps && !alt){};
-
-  //     if(letter){
-
-  //       // if these keys are hit.. runs function to check if letters match
-  //       matchLetters(key);
-
-  //       e.preventDefault();
-
-  //       console.log("you pressed a key that wasn't shift, caps, nor alt");
-
-  //     };
-
-
-
-  //     if(key === "Backspace"){
-
-  //       // maybe dim the right/wrong words afterward
-
-  //     };
-
-  //   };
-
-  //   // doesn't work
-  //   const onKeyDown = (event) => {
-
-  //     startTimer();
-
-  //     let key = event.key;
-
-  //       // if(data.includes(letter)){};
-
-  //       // letter is the current value
-  //       // index is the letter's position in the array
-  //       data.split("").forEach((letter, index) => {
-
-  //         // gives me every character: letters, semi-colo, apostraphe
-  //         // console.log(letter);
-
-
-  //         // const character = letter[0];
-  //         // const characterA = letter[1];
-  //         // const characterB = letter[2];
-
-  //         // Issue: the function is grabbing the index which is the letter's position and first letter of the array.. which works
-
-  //         // console.log(`My index is ${index} and value is ${letter}`);
-
-  //       });
-
-
-  //     if(key === " " || key === "Space"){
-
-  //       // check if the word matches after pressing the spacebar
-  //       console.log("you pressed the space bar");
-
-  //     };
-
-  //   };
-
-  //   return () => {
-
-  //     document.onkeydown = null;
-
-  //   };
-
-  //   // eslint-disable-next-line
-  // }, []);
-
-
-  useEffect(() => {
-
-    data.split("").forEach((char, charId) => {
-
-      getCharacter(char);
-      getIndex(charId);
-
-    });
-
-    const onKeyDown = (e) => {
-
-      let key = e.key;
-      let shift = key === "Shift";
-      let caps = key === "CapsLock";
-      let alt = key === "Alt";
-
-      const letter = key.length === 1 && key !== " ";
-
-      // setKeydown(prev => [ ...prev, key ]);
-
-      if(letter){
-
-        // if(!shift && !caps && !alt){
-
-          data.split("").map((char, charId) => {
-
-            if(letter === char){
-
-              console.log(`this is the pressed key: ${key}`);
-
-            };
-
-          });
-
-        // };
-
-      };
-
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-
-    return () => {
-
-      document.removeEventListener("keydown", onKeyDown);
-
-    };
-
-    // eslint-disable-next-line
-  }, []);
-
-
-  console.log(character);
-  console.log(index);
-
-  // console.log(wrongLetters);
-  // console.log(correctLetters);
-
-  // Note: what if there is an event that moves the word span left after the keydown has been triggered...?
-  // Note: animation is the caret staying and moving to the left of the typed word... which then could move the container on its own as the cursor stays to the left of each word
-
-  return null;
-
-}
+};
 
 export default useKeyDown;

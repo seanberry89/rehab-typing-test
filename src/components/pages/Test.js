@@ -1,93 +1,88 @@
-import { useState, useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Box, Stack } from '@mui/material';
 
 import useRehabContext from '../../hooks/useRehabContext';
 import useTimer from '../../hooks/useTimer';
-import useParagraph from '../../hooks/useParagraph';
+import useExcerpt from '../../hooks/useExcerpt';
+import useKeyDown from '../../hooks/useKeyDown';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
-import Timer from '../Timer';
-import Title from '../Title';
-import Input from '../Input';
-import Results from '../Results';
+import Header from '../test/header/Header';
+import Timer from '../test/main/Timer';
+import Input from '../test/main/Input';
+import Results from '../test/main/Results';
+import Footer from '../test/footer/Footer';
 
-// reset button (done)
-// countdown timer (done)
-// typing starts the app (done)
-// load story into textfield (done)
-// top half is the textfield while bottom half loads results: wpm, accuracy, top 5 missed letters
 
 const Test = () => {
 
   const context = useRehabContext();
-  const { oneMin, threeMin, fiveMin, testPage, enterTest } = context;
+  const { oneMin, threeMin, fiveMin, results, loading } = context;
 
-  const [ minutes, setMinutes ] = useState(0);
-  const [ seconds, setSeconds ] = useState(0);
+  const [ data, setIsExcerpt ] = useExcerpt();
+
+  const [ minutes, setMinutes ] = useLocalStorage(0, "minutes");
+  const [ seconds, setSeconds ] = useLocalStorage(0, "seconds");
 
   useTimer(minutes, seconds, setMinutes, setSeconds);
 
-  const [ data, setIsParagraph ] = useParagraph();
-
-  const getLocal = useLocalStorage();
-  const getNumber = Number(getLocal.slice(2, 3));
+  const [ incoming, current, outgoing, incorrectChar, correctChar, isBlink, setIncoming, setCurrent, setOutgoing, setIncorrectChar, setCorrectChar ] = useKeyDown(data);
 
 
   useEffect(() => {
 
-    if(!testPage){
+    if(oneMin){
 
-      enterTest();
-
-      if(oneMin){
-
-        setMinutes(1);
-        setSeconds(0);
-
-      };
-
-      if(threeMin){
-
-        setMinutes(3);
-        setSeconds(0);
-
-      };
-
-      if(fiveMin){
-
-        setMinutes(5);
-        setSeconds(0);
-
-      };
+      setMinutes(1);
+      setSeconds(0);
 
     };
 
-    if(testPage){
+    if(threeMin){
 
-      setMinutes(getNumber);
+      setMinutes(3);
+      setSeconds(0);
+
+    };
+
+    if(fiveMin){
+
+      setMinutes(5);
+      setSeconds(0);
 
     };
 
     // eslint-disable-next-line
-  }, [testPage]);
+  }, []);
 
-
-  // Note: resolve the inquiry about the paragraph data in a separate reader before resolving the paragraph in the same input as the typer
 
   return (
 
-    <Box sx={{ height: "100vh", backgroundColor: theme => theme.palette.primary.main }}>
+    <Fragment>
 
-      <Stack sx={{ position: "fixed", width: "100%", backgroundColor: "transparent", zIndex: 5, px: 3, py: 3 }} direction="row" justifyContent="space-around" alignItems="center">
-        <Timer minutes={minutes} seconds={seconds} />
-        <Title data={data} />
-      </Stack>
+        <Box sx={{ height: "100vh", overflow: "hidden", backgroundColor: theme => theme.palette.primary.main }}>
 
-      <Stack sx={{ height: "100%" }} direction="column" justifyContent="center" alignItems="center" spacing={3}>
-        <Input data={data} minutes={minutes} setMinutes={setMinutes} setSeconds={setSeconds} setIsParagraph={setIsParagraph} />
-        <Results />
-      </Stack>
-    </Box>
+          { results && !loading ? (
+
+            <Results data={data} incorrectChar={incorrectChar} correctChar={correctChar} setCurrent={setCurrent} setIncoming={setIncoming} setOutgoing={setOutgoing} setIncorrectChar={setIncorrectChar} setCorrectChar={setCorrectChar} setMinutes={setMinutes} setSeconds={setSeconds} />
+
+          ) : null }
+
+          <Header data={data} minutes={minutes} seconds={seconds} />
+
+          <Stack sx={{ height: "100%" }} direction="column" justifyContent="center" alignItems="center" spacing={2}>
+
+            <Timer minutes={minutes} seconds={seconds} />
+
+            <Input data={data} current={current} incoming={incoming} outgoing={outgoing} isBlink={isBlink} setCurrent={setCurrent} setIncoming={setIncoming} setOutgoing={setOutgoing} setIncorrectChar={setIncorrectChar} setMinutes={setMinutes} setSeconds={setSeconds} setIsExcerpt={setIsExcerpt}  />
+
+          </Stack>
+
+        </Box>
+
+      <Footer />
+
+    </Fragment>
 
   );
 };

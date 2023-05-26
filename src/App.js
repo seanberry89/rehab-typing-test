@@ -2,14 +2,12 @@ import { Fragment, lazy, Suspense } from "react";
 import { CssBaseline } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
 
-import Loader from './components/Loading';
+import Loader from './components/pages/Loading';
 
 const Home = lazy(() => import('./components/pages/Home'));
 const Select = lazy(() => import('./components/pages/Select'));
 const Test = lazy(() => import('./components/pages/Test'));
 const NotFound = lazy(() => import('./components/pages/NotFound'));
-
-// import Reader from './components/Reader';
 
 function App() {
   return (

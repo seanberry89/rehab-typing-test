@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { Box, Stack, styled, Typography } from '@mui/material';
-import { flexCenter } from '../theme/CustomTheme';
+import { flexCenter } from '../../theme/CustomTheme';
 import { SyncLoader } from 'react-spinners';
 
-import useRehabContext from '../hooks/useRehabContext';
+import useRehabContext from '../../hooks/useRehabContext';
 
 const BlueBackground = styled(Box) `
   position: fixed;

@@ -4,12 +4,7 @@ import useRehabContext from './useRehabContext';
 const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
 
   const context = useRehabContext();
-  const { timer, isPaused, endTimer } = context;
-
-  // Note: useRef Hook:
-  // when you update the state.. you cause the component to re-render..
-
-  // useRefs do not cause the state to re-update when its changed.. ref = { current: value }, takes a previous value and persists between re-renders but does not cause to re-render like state
+  const { timer, isPaused, enterResults, setLoading } = context;
 
   const intervalOne = useRef(0);
   const intervalTwo = useRef(0);
@@ -27,7 +22,7 @@ const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
 
           setSeconds(59);
 
-        }
+        };
 
       }, 1000);
 
@@ -66,7 +61,7 @@ const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
 
       };
 
-    }
+    };
 
     // eslint-disable-next-line
   }, [seconds, isPaused]);
@@ -75,9 +70,17 @@ const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
   // handles timer end
   useEffect(() => {
 
-    if(minutes === 0 && seconds === 0){
+    if(timer && minutes === 0 && seconds === 0){
 
-      endTimer();
+      setLoading(true);
+
+      setTimeout(() => {
+
+        setLoading(false);
+
+        enterResults();
+
+      }, 1500);
 
     };
 
