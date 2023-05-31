@@ -1,11 +1,12 @@
 import { Fragment, useState, useEffect } from 'react';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Paper, Stack, styled, Typography } from '@mui/material';
+import { flexCenter } from '../../../../theme/CustomTheme';
 import { Link } from 'react-router-dom';
-import { colors } from '../../../data/Other';
+import { colors } from '../../../../data/Other';
 
 import CloseIcon from '@mui/icons-material/Close';
 
-import useRehabContext from '../../../hooks/useRehabContext';
+import useRehabContext from '../../../../hooks/useRehabContext';
 
 
 const StyledLink = styled(Link) `
@@ -56,15 +57,6 @@ const WhitePaper = styled(Paper) `
 `;
 
 
-const BluePaper = styled(Paper) `
-
-  background-color: #2F7ABF;
-  border-radius: 15px;
-  padding: 5px 15px;
-
-`;
-
-
 const MissingIcon = styled(IconButton) `
 
   background-color: #fff;
@@ -78,14 +70,19 @@ const MissingIcon = styled(IconButton) `
 
 `;
 
-const Results = ({ data, incorrectChar, correctChar, setCurrent, setIncoming, setOutgoing, setIncorrectChar, setCorrectChar, setMinutes, setSeconds }) => {
+
+const Results = ({ data, incorrectChar, correctChar, missedChar, setCurrent, setIncoming, setOutgoing, setIncorrectChar, setCorrectChar, setMinutes, setSeconds }) => {
 
   const { oneMin, threeMin, fiveMin, exitResults } = useRehabContext();
 
   const [ open, setOpen ] = useState(false);
   const [ accuracy, setAccuracy ] = useState(0);
   const [ wpm, setWpm ] = useState(0);
-  const [ missedLetters, setMissedLetters ] = useState([]);
+
+  let correct = correctChar.length - 1;
+  let incorrect = incorrectChar.length - 1;
+  let total = correct + incorrect;
+  let percentage = "percentage";
 
 
   useEffect(() => {
@@ -96,17 +93,18 @@ const Results = ({ data, incorrectChar, correctChar, setCurrent, setIncoming, se
 
     updateWpm();
 
-    updateMissedLetters();
-
     // eslint-disable-next-line
   }, []);
 
 
-  const updateAccuracy = () => {
+  useEffect(() => {
 
-    let correct = correctChar.length - 1;
-    let incorrect = incorrectChar.length - 1;
-    let total = correct + incorrect;
+    updatePercentages();
+
+  }, [missedChar]);
+
+
+  const updateAccuracy = () => {
 
     setAccuracy(((correct / total) * 100).toFixed(0));
 
@@ -114,10 +112,6 @@ const Results = ({ data, incorrectChar, correctChar, setCurrent, setIncoming, se
 
 
   const updateWpm = () => {
-
-    let correct = correctChar.length - 1;
-    let incorrect = incorrectChar.length - 1;
-    let total = correct + incorrect;
 
     if(oneMin){
 
@@ -136,49 +130,19 @@ const Results = ({ data, incorrectChar, correctChar, setCurrent, setIncoming, se
       setWpm(((total / 5) / 5).toFixed(0));
 
     };
+
   };
 
 
-  const updateMissedLetters = () => {
+  const updatePercentages = () => {
 
-    let key = "key";
-    let empty = [];
+    missedChar.forEach((item) => {
 
-    // maybe conditional to filter out special characters: "", ;, :, " ", and others
-    // let space = item.key === " ";
-    // let semi = item.key === ";";
+      let formula = ((item.count / incorrect) * 100).toFixed(0);
 
-    incorrectChar.forEach((item) => {
-
-      if(empty.some((val) => { return val[key] === item[key] })){
-
-        empty.forEach((itemTwo) => {
-
-          if(itemTwo[key] === item[key]){
-
-            itemTwo["count"]++;
-
-          };
-
-        });
-
-      } else {
-
-        let itemThree = {};
-
-        itemThree[key] = item[key];
-
-        itemThree["count"] = 1;
-
-        empty.push(itemThree);
-
-      };
+      item[percentage] = formula;
 
     });
-
-    empty.sort((a, b) => b - a);
-
-    setMissedLetters(empty.slice(0, 5));
 
   };
 
@@ -280,21 +244,16 @@ const Results = ({ data, incorrectChar, correctChar, setCurrent, setIncoming, se
               <Typography sx={{ borderBottom: "1.5px solid black", pb: -2 }} fontSize="24px" fontWeight={900}>Most Missed Letters</Typography>
               <Stack direction="row" justifyContent="center" alignItems="center" spacing={3}>
 
+                  { missedChar.map((char, charId) => {
 
-                  { missedLetters.map((letter, index) => {
-
-                    // insert this as the styling for the paper-background
-                    // this works if inserted into styling
                     let randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-                    console.log(randomColor);
 
                     return (
 
-                      <Fragment key={letter + index}>
+                      <Fragment key={char + charId}>
                         <Stack sx={{ textAlign: "center" }} direction="column" justifyContent="center" alignItems="center" spacing={1}>
-                          <Paper sx={{ backgroundColor: randomColor.color, borderRadius: 3, padding: "5px 15px" }} elevation={3}><Typography fontSize="20px" fontWeight={700} color="#fff">{letter.key}</Typography></Paper>
-                          <Typography>65%</Typography>
+                          <Paper sx={{ ...flexCenter, backgroundColor: randomColor.color, borderRadius: 3, width: "40px", height: "40px" }} elevation={3}><Typography fontSize="30px" fontWeight={700} color="#fff">{char.key}</Typography></Paper>
+                          <Typography fontSize={18} fontWeight={500}>{char.percentage}%</Typography>
                         </Stack>
                       </Fragment>
 

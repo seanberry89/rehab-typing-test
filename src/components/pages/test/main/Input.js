@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { Box, IconButton, Paper, Stack, styled } from '@mui/material';
-import '../../../style/typing.css';
+import '../../../../assets/style/typing.css';
 
-import useRehabContext from '../../../hooks/useRehabContext';
+import useRehabContext from '../../../../hooks/useRehabContext';
 
 import Outgoing from './Outgoing';
 import Cursor from './Cursor';
@@ -120,7 +120,8 @@ const Fade = styled(Box) `
 
 `;
 
-const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, setIncorrectChar, setOutgoing, setMinutes, setSeconds, setIsExcerpt, isBlink }) => {
+
+const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, setIncorrectChar, setCorrectChar, setOutgoing, setMinutes, setSeconds, setIsExcerpt, isBlink }) => {
 
   const context = useRehabContext();
   const { timer, isPaused, oneMin, threeMin, fiveMin, endTimer, pauseTest, playTest } = context;
@@ -148,6 +149,7 @@ const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, set
     setCurrent(data.excerpt.slice(0, 1));
     setIncoming(data.excerpt.slice(1));
     setIncorrectChar([{ id: 0, key: "" }]);
+    setCorrectChar([{ id: 0, key: "" }]);
 
     if(fiveMin){
 
@@ -177,27 +179,11 @@ const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, set
   };
 
 
-  // const setFocus = useCallback((el) => {
-
-  //   el?.focus();
-
-  //   if(isPaused){
-
-  //     el?.blur();
-
-  //   };
-
-  //   // eslint-disable-next-line
-  // }, [ resetClick, playClick, storyClick ]);
-
-
   return (
 
     <Fragment>
 
       <Stack direction="column" justifyContent="center" alignItems="center" spacing={3}>
-
-        {/* <input ref={setFocus} style={{ opacity: 0, zIndex: -10, position: "absolute" }} type="text" spellCheck="false" value={input} onChange={(e) => setInput(e.target.value)} /> */}
 
         <Paper sx={{ position: "relative", width: { xs: "400px", sm: "550px", md: "850px", lg: "1000px" }, height: { xs: "145px", md: "150px" }, borderRadius: 5, py: 6 }} elevation={10}>
 
@@ -207,7 +193,7 @@ const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, set
 
             <LeftInput sx={{ fontSize: { xs: 34, sm: 36, md: 38 } }} justifyContent="center" alignItems="center" direction="column">
 
-              <Outgoing outgoing={outgoing} />
+              <Outgoing outgoing={outgoing} data={data} />
 
               <Cursor data={data} isBlink={isBlink} />
 
@@ -216,6 +202,7 @@ const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, set
                 let space = item.key === " ";
 
                 return (
+
                   <Fragment key={item.id}>
                     { space ? (
                       <span style={{ display: "inline-block", width: "10px" }}>{space}</span>
@@ -223,7 +210,8 @@ const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, set
                       <span>{item.key}</span>
                     )}
                   </Fragment>
-                )
+
+                );
 
               })}
 
@@ -235,6 +223,7 @@ const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, set
                 let space = item.key === " ";
 
                 return (
+
                   <Fragment key={item.id}>
                     { space ? (
                       <span style={{ display: "inline-block", width: "10px" }}>{space}</span>
@@ -242,7 +231,8 @@ const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, set
                       <span>{item.key}</span>
                     ) }
                   </Fragment>
-                )
+
+                );
 
               })}
 

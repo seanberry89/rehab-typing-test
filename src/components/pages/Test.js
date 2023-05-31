@@ -7,11 +7,11 @@ import useExcerpt from '../../hooks/useExcerpt';
 import useKeyDown from '../../hooks/useKeyDown';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
-import Header from '../test/header/Header';
-import Timer from '../test/main/Timer';
-import Input from '../test/main/Input';
-import Results from '../test/main/Results';
-import Footer from '../test/footer/Footer';
+import Header from './test/header/Header';
+import Timer from './test/main/Timer';
+import Input from './test/main/Input';
+import Results from './test/main/Results';
+import Footer from './test/footer/Footer';
 
 
 const Test = () => {
@@ -26,7 +26,7 @@ const Test = () => {
 
   useTimer(minutes, seconds, setMinutes, setSeconds);
 
-  const [ incoming, current, outgoing, incorrectChar, correctChar, isBlink, setIncoming, setCurrent, setOutgoing, setIncorrectChar, setCorrectChar ] = useKeyDown(data);
+  const [ incoming, current, outgoing, incorrectChar, correctChar, missedChar, isBlink, setIncoming, setCurrent, setOutgoing, setIncorrectChar, setCorrectChar ] = useKeyDown(data);
 
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Test = () => {
 
           { results && !loading ? (
 
-            <Results data={data} incorrectChar={incorrectChar} correctChar={correctChar} setCurrent={setCurrent} setIncoming={setIncoming} setOutgoing={setOutgoing} setIncorrectChar={setIncorrectChar} setCorrectChar={setCorrectChar} setMinutes={setMinutes} setSeconds={setSeconds} />
+            <Results data={data} incorrectChar={incorrectChar} correctChar={correctChar} missedChar={missedChar} setCurrent={setCurrent} setIncoming={setIncoming} setOutgoing={setOutgoing} setIncorrectChar={setIncorrectChar} setCorrectChar={setCorrectChar} setMinutes={setMinutes} setSeconds={setSeconds} />
 
           ) : null }
 
@@ -74,7 +74,7 @@ const Test = () => {
 
             <Timer minutes={minutes} seconds={seconds} />
 
-            <Input data={data} current={current} incoming={incoming} outgoing={outgoing} isBlink={isBlink} setCurrent={setCurrent} setIncoming={setIncoming} setOutgoing={setOutgoing} setIncorrectChar={setIncorrectChar} setMinutes={setMinutes} setSeconds={setSeconds} setIsExcerpt={setIsExcerpt}  />
+            <Input data={data} current={current} incoming={incoming} outgoing={outgoing} isBlink={isBlink} setCurrent={setCurrent} setIncoming={setIncoming} setOutgoing={setOutgoing} setIncorrectChar={setIncorrectChar} setCorrectChar={setCorrectChar} setMinutes={setMinutes} setSeconds={setSeconds} setIsExcerpt={setIsExcerpt}  />
 
           </Stack>
 

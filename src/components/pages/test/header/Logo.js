@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { Box, Stack, styled, Typography } from '@mui/material';
 
-import RehabLogo from '../../../images/rehab-therapy-logo.png';
+import RehabLogo from '../../../../assets/images/rehab-therapy-logo.png';
 
 const StyledLogo = styled(Box) `
 
@@ -16,7 +16,7 @@ const Logo = () => {
     <Fragment>
       <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
         <StyledLogo component="img" src={RehabLogo} />
-        <Typography color="#3C4551" fontSize={25} fontWeight={700}>Rehab Typing Test</Typography>
+        <Typography color="#3C4551" fontSize={30} fontWeight={700}>Rehab Typing Test</Typography>
       </Stack>
     </Fragment>
   );

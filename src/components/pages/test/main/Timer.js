@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Stack, Typography } from '@mui/material';
 
+
 const Timer = ({ minutes, seconds }) => {
 
   return (
@@ -16,9 +17,6 @@ const Timer = ({ minutes, seconds }) => {
           <Typography color="#fff" fontSize="80px" fontWeight={700}>{ seconds < 10 ? "0" + seconds : seconds }</Typography>
           <Typography color="#fff" fontSize="16px" fontWeight={500}>seconds</Typography>
         </Stack>
-      </Stack>
-      <Stack>
-
       </Stack>
     </Fragment>
 

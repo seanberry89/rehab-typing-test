@@ -10,32 +10,9 @@ const useParagraph = () => {
   const context = useRehabContext();
   const { testPage, oneMin, threeMin, fiveMin } = context;
 
-  // update initial value of excerpt to be array of split strings?
   const [ data, setData ] = useLocalStorage({ title: "", chapter: "", excerpt: [{ id: "", key: "" }] }, "data");
 
-  // const [ splitData, setSplitData ] = useLocalStorage([], "splitData");
-
   const [ isExcerpt, setIsExcerpt ] = useState(false);
-
-
-  // const splitExcerpt = (excerpt) => {
-
-  //   let initial = [];
-
-  //   excerpt.split("").forEach((char, charId) => {
-
-  //     initial.push({
-
-  //       id: charId,
-  //       key: char
-
-  //     });
-
-  //   });
-
-  //   setSplitData(initial);
-
-  // };
 
 
   useEffect(() => {
@@ -70,8 +47,6 @@ const useParagraph = () => {
 
       });
 
-      // splitExcerpt(randomExcerpt);
-
       setData({ title: randomTitle, chapter: randomChapter, excerpt: splitExcerpt })
 
     };
@@ -96,8 +71,6 @@ const useParagraph = () => {
 
       });
 
-      // splitExcerpt(randomExcerpt);
-
       setData({ title: randomTitle, chapter: randomChapter, excerpt: splitExcerpt });
 
     };
@@ -121,8 +94,6 @@ const useParagraph = () => {
         })
 
       });
-
-      // splitExcerpt(randomExcerpt);
 
       setData({ title: randomTitle, chapter: randomChapter, excerpt: splitExcerpt });
 

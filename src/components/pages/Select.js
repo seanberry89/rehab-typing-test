@@ -4,9 +4,10 @@ import { Box, Stack, styled, Typography, useMediaQuery } from '@mui/material';
 
 import useRehabContext from '../../hooks/useRehabContext';
 
-import scrabble from '../../images/scrabble-letters.jpg';
-import typewriter from '../../images/typewriter.jpg';
-import laptop from '../../images/typing-one.jpg';
+import scrabble from '../../assets/images/scrabble-letters.jpg';
+import typewriter from '../../assets/images/typewriter.jpg';
+import laptop from '../../assets/images/typing-one.jpg';
+
 
 const LeftLink = styled(Link) `
 

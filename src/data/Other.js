@@ -71,22 +71,19 @@ export const colors = [
 
   { id: 0, title: "Red", color: "#FF0000" },
   { id: 1, title: "Orange", color: "#FF7F00" },
-  { id: 3, title: "Green", color: "#00FF00" },
-  { id: 4, title: "Blue", color: "#0000FF" },
-  { id: 5, title: "Indigo", color: "#4B0082" },
-  { id: 6, title: "Violet", color: "#9400D3" },
-  { id: 7, title: "Red Violet", color: "#C0448F" },
-  { id: 8, title: "Red Orange", color: "#FF5349" },
-  { id: 9, title: "Blue Violet", color: "#7366BD" },
-  { id: 10, title: "Carnation Pink", color: "#FFAACC" },
-  { id: 11, title: "Yellow Orange", color: "#FFB653" },
-  { id: 12, title: "Blue Green", color: "#199EBD" },
-  { id: 13, title: "Violet Red", color: "#F75394" },
-  { id: 14, title: "Cerulean", color: "#1DACD6" },
-  { id: 15, title: "Scarlet", color: "#FC2847" },
-  { id: 16, title: "Tan", color: "#FAA76C" },
-  { id: 17, title: "Chestnut", color: "#BC5D58" }
+  { id: 2, title: "Blue", color: "#0000FF" },
+  { id: 3, title: "Indigo", color: "#4B0082" },
+  { id: 4, title: "Violet", color: "#9400D3" },
+  { id: 5, title: "Red Violet", color: "#C0448F" },
+  { id: 6, title: "Red Orange", color: "#FF5349" },
+  { id: 7, title: "Blue Violet", color: "#7366BD" },
+  { id: 8, title: "Yellow Orange", color: "#FFB653" },
+  { id: 9, title: "Blue Green", color: "#199EBD" },
+  { id: 10, title: "Violet Red", color: "#F75394" },
+  { id: 11, title: "Cerulean", color: "#1DACD6" },
+  { id: 12, title: "Scarlet", color: "#FC2847" },
+  { id: 13, title: "Chestnut", color: "#BC5D58" },
+  { id: 14, title: "Hobbit Green", color: "#136207" },
+  { id: 15, title: "Snowflake Blue", color: "#99C4CE" }
 
  ];
-
-//  let randomRainbow = rainbow[Math.floor(Math.random() * rainbow.length)];

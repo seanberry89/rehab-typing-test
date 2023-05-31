@@ -5,6 +5,7 @@ import { SyncLoader } from 'react-spinners';
 
 import useRehabContext from '../../hooks/useRehabContext';
 
+
 const BlueBackground = styled(Box) `
   position: fixed;
   inset: 0;
@@ -13,10 +14,12 @@ const BlueBackground = styled(Box) `
   z-index: 1;
 `;
 
+
 const Loading = () => {
 
   const context = useRehabContext();
   const { setLoading } = context;
+  
 
   useEffect(() => {
 
@@ -30,6 +33,7 @@ const Loading = () => {
 
     // eslint-disable-next-line
   }, []);
+
 
   return (
 

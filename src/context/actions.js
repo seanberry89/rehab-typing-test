@@ -12,11 +12,4 @@ export const EXIT_TEST = 'EXIT_TEST';
 export const ENTER_RESULTS = 'ENTER_RESULTS';
 export const EXIT_RESULTS = 'EXIT_RESULTS';
 
-export const APP_ERROR = 'APP_ERROR';
 export const SET_LOADING = 'SET_LOADING';
-
-// Action Notes:
-// * calculate the words typed in the paragraph via the timer: words-per-minute, and this starts when the user types the first letter of the first word
-// * find the most missed letters from the paragraph: add the letters that were missed from the typing, then via a conditional, show which letters were missed the most: x2 or x3 or x4 or x5
-// * typing speed: words-per-minute
-// * most missed letters (and how often the letters were missed)

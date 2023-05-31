@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import useRehabContext from './useRehabContext';
 
+
 const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
 
   const context = useRehabContext();
@@ -8,6 +9,7 @@ const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
 
   const intervalOne = useRef(0);
   const intervalTwo = useRef(0);
+
 
   // handles interval for minutes
   useEffect(() => {
@@ -86,6 +88,9 @@ const useTimer = (minutes, seconds, setMinutes, setSeconds) => {
 
     // eslint-disable-next-line
   }, [minutes, seconds]);
+  
+
+  return null;
 
 };
 

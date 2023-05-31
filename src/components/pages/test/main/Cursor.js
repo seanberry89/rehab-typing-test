@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import '../../../style/typing.css';
+import '../../../../assets/style/typing.css';
 
 
 const Cursor = ({ data, isBlink }) => {

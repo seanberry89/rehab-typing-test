@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import React from 'react';
 import { Box, Divider, Paper, Stack, styled, IconButton, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { flexCenter } from '../../theme/CustomTheme';
 
-import RehabLogo from '../../images/rehab-therapy-logo.png';
+import RehabLogo from '../../assets/images/rehab-therapy-logo.png';
 
 
 const StartLink = styled(Link) `
@@ -54,83 +54,8 @@ const StyledIcon = styled(IconButton)`
 
 `;
 
-const colors = [
-
-  { id: 0, title: "Red", color: "#FF0000" },
-  { id: 1, title: "Orange", color: "#FF7F00" },
-  { id: 2, title: "Yellow", color: "#FFFF00" },
-  { id: 3, title: "Green", color: "#00FF00" },
-  { id: 4, title: "Blue", color: "#0000FF" },
-  { id: 5, title: "Indigo", color: "#4B0082" },
-  { id: 6, title: "Violet", color: "#9400D3" },
-  { id: 7, title: "Red Violet", color: "#C0448F" },
-  { id: 8, title: "Red Orange", color: "#FF5349" },
-  { id: 9, title: "Blue Violet", color: "#7366BD" },
-  { id: 10, title: "Carnation Pink", color: "#FFAACC" },
-  { id: 11, title: "Yellow Orange", color: "#FFB653" },
-  { id: 12, title: "Blue Green", color: "#199EBD" },
-  { id: 13, title: "Violet Red", color: "#F75394" },
-  { id: 14, title: "Cerulean", color: "#1DACD6" },
-  { id: 15, title: "Scarlet", color: "#FC2847" },
-  { id: 16, title: "Tan", color: "#FAA76C" },
-  { id: 17, title: "Chestnut", color: "#BC5D58" }
-
- ];
-
- let random = colors[Math.floor(Math.random() * colors.length)];
 
 const Home = () => {
-
-  const [ demo, setDemo ] = useState([
-
-    {
-    id: 1, key: "a"
-    },
-    {id: 2, key: "a"
-    },
-    {
-      id: 3, key: "c"
-    },
-    {
-      id: 4, key: "c"
-    },
-    {
-      id: 5, key: "e"
-    },
-    {
-      id: 6, key: "e"
-    },
-    {
-      id: 7, key: "g"
-    },
-    {
-      id: 8, key: "g"
-    },
-    {
-      id: 9, key: "d"
-    },
-    {
-      id: 11, key: "d"
-    },
-    {
-      id: 12, key: "m"
-    },
-    {
-      id: 13, key: "n"
-    }]
-  );
-
-  // here is a way to retrieve the first five items from array, but I need to arrange the highest amount of duplicates before I slice() the array
-  demo?.slice(0, 5).map(() => {
-
-    let itemColor = colors[Math.floor(Math.random() * colors.length)];
-
-    console.log(itemColor);
-
-    return itemColor;
-
-  });
-
 
   return (
     <Box sx={{ height: "100vh" }}>

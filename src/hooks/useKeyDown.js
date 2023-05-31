@@ -16,18 +16,20 @@ const useKeyDown = (data) => {
 
   const [ correctChar, setCorrectChar ] = useState([{ id: 0, key: "" }]);
   const [ incorrectChar, setIncorrectChar ] = useState([{ id: 0, key: "" }]);
+  const [ missedChar, setMissedChar ] = useState([]);
 
   const [ isBlink, setIsBlink ] = useState(true);
+
+  let empty = [];
+  let key = "key";
 
 
   useEffect(() => {
 
-    // updates state current to be the first character of paragraph
-    // setCurrent(data?.excerpt.charAt(0));
+    // updates state current to be first character of excerpt
     setCurrent(data.excerpt.slice(0, 1));
 
-    // updates state incoming to be the second character of paragraph + rest of string
-    // setIncoming(data?.excerpt.substring(1));
+    // updates state incoming to be the second character of excerpt + rest
     setIncoming(data.excerpt.slice(1));
 
     // eslint-disable-next-line
@@ -48,7 +50,7 @@ const useKeyDown = (data) => {
 
       };
 
-      // conditional for when the user types ONLY the characters in the array
+      // conditional for when the user types ONLY the selected characters
       if(!results && typingKeys.includes(key)){
 
         clearTimeout(countdown);
@@ -65,7 +67,7 @@ const useKeyDown = (data) => {
 
         } else {
 
-          updateLetters(key);
+          updateCharacters(key);
 
           e.preventDefault();
 
@@ -82,7 +84,7 @@ const useKeyDown = (data) => {
 
         } else {
 
-          deleteLetters();
+          deleteCharacters();
 
           e.preventDefault();
 
@@ -111,11 +113,17 @@ const useKeyDown = (data) => {
 
     };
 
-  // no dependency means effect hook runs on every render
   });
 
 
-  const updateLetters = (key) => {
+  useEffect(() => {
+
+    updateMissedCharacters();
+
+  }, [incorrectChar]);
+
+
+  const updateCharacters = (key) => {
 
     // outgoing gets updated by the previous state + current state
     current.map((item) => {
@@ -162,16 +170,17 @@ const useKeyDown = (data) => {
 
     });
 
-    // current updates the first character of state incoming
+    // update state current to be first character of state incoming
     setCurrent(incoming.slice(0, 1));
 
-    // incoming updates the second character of state incoming + rest of paragraph
+    // update state incoming to be second character of state incoming + rest
     setIncoming(incoming.slice(1));
 
   };
 
 
-  const deleteLetters = () => {
+  // the issue is I haven't deleted character from correctChar nor incorrectChar yet
+  const deleteCharacters = () => {
 
     outgoing.map((item, index, arr) => {
 
@@ -191,6 +200,9 @@ const useKeyDown = (data) => {
             key: correct
           }]);
 
+          // deletes prev correct char
+          setCorrectChar(prev => prev.filter(item => item.id !== id));
+
         };
 
         if(incorrect){
@@ -200,6 +212,9 @@ const useKeyDown = (data) => {
             id: id,
             key: incorrect
           }]);
+
+          // deletes prev incorrect char
+          setIncorrectChar(prev => prev.filter(item => item.id !== id));
 
         };
 
@@ -229,7 +244,53 @@ const useKeyDown = (data) => {
   };
 
 
-  return [ incoming, current, outgoing, incorrectChar, correctChar, isBlink, setIncoming, setCurrent, setOutgoing, setIncorrectChar, setCorrectChar ];
+  const updateMissedCharacters = () => {
+
+    incorrectChar.forEach((item) => {
+
+      let space = item.key === " " || item.key === "";
+
+      if(!space){
+
+        // check for an object in new array that contains the key value
+        if(empty.some((val) => val[key] === item[key])){
+
+          // if so, increase property 'count' by 1
+          empty.forEach((itemTwo) => {
+
+            if(itemTwo[key] === item[key]){
+
+              itemTwo["count"]++;
+
+            };
+
+          });
+
+          // if not, create new property 'count' to be value of 1
+        } else {
+
+          let itemThree = {};
+
+          itemThree[key] = item[key];
+
+          itemThree["count"] = 1;
+
+          empty.push(itemThree);
+
+        };
+
+      };
+
+    });
+
+    empty.sort((a, b) => b.count - a.count);
+
+    setMissedChar(empty.slice(0, 5));
+
+  };
+
+
+  return [ incoming, current, outgoing, incorrectChar, correctChar, missedChar, isBlink, setIncoming, setCurrent, setOutgoing, setIncorrectChar, setCorrectChar ];
 
 
 };

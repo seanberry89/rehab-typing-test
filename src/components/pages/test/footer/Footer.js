@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, Paper, Stack, styled, Typography } from '@mui/material';
-import { fixedBottom } from '../../../theme/CustomTheme';
+import { fixedBottom } from '../../../../theme/CustomTheme';
 import { Link } from 'react-router-dom';
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,10 +11,10 @@ import { FaPause } from 'react-icons/fa';
 import { FaPlay } from 'react-icons/fa';
 import { FaBook } from 'react-icons/fa';
 
-import useRehabContext from '../../../hooks/useRehabContext';
+import useRehabContext from '../../../../hooks/useRehabContext';
 
 
-const QuestionIcon = styled(IconButton)`
+const QuestionIcon = styled(IconButton) `
 
   background-color: #FFF;
   padding: 10px;
@@ -77,7 +77,6 @@ const PauseButton = styled(IconButton) `
 
 `;
 
-
 const PlayButton = styled(IconButton) `
 
   cursor: default;
@@ -128,12 +127,12 @@ const ShortcutSpan = styled(Box) `
 
 `;
 
+
 const Footer = () => {
 
   const context = useRehabContext();
   const { pauseTest } = context;
 
-  // Note: maybe move this state to Test so I can prop drill to Input?
   const [ open, setOpen ] = useState(false);
 
   const onClick = () => {
@@ -158,7 +157,7 @@ const Footer = () => {
       <CloseButton sx={{ position: "absolute", top: 10, right: 10 }} onClick={onClose}><CloseIcon /></CloseButton>
       <Stack sx={{ pt: 6, px: 2 }} direction="column" justifyContent="center" alignItems="center">
         <Typography sx={{ pb: 0.5 }} color="#3C4551" fontWeight={700} fontSize={20}>Instructions</Typography>
-        <Typography sx={{ textAlign: "center" }} fontSize={15}>Test your computer typing with the classic works of Tolkien, Rowling, and Dickens.  Below are the features and shortcuts to assist with your typing test.  Enjoy!</Typography>
+        <Typography sx={{ textAlign: "center" }} fontSize={15}>Test your computer typing with the classic works of Tolkien, Rowling, and more. Below are the features and shortcuts to assist with your typing test. Enjoy!</Typography>
         <List>
           <ListItem>
             <ListItemIcon>
@@ -203,14 +202,13 @@ const Footer = () => {
 
   );
 
+
   return (
     <Fragment>
       <Box sx={fixedBottom}>
         <Stack sx={{ width: "100%", px: 2, pb: 2 }} direction="row" justifyContent="flex-start" alignItems="center" spacing={2}>
-          {/* <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}> */}
-            <QuestionIcon onClick={onClick}><FaQuestion title="Questions?" color="black" size={20} /></QuestionIcon>
-            <TimerLink to="/select"><MdOutlineTimer title="Change Timer?" color="black" size={28} /></TimerLink>
-          {/* </Stack> */}
+          <QuestionIcon onClick={onClick}><FaQuestion title="Questions?" color="black" size={20} /></QuestionIcon>
+          <TimerLink to="/select"><MdOutlineTimer title="Change Timer?" color="black" size={28} /></TimerLink>
         </Stack>
         <Drawer sx={{ backgroundColor: "rgba(47, 122, 191, 0.7)" }} anchor="left" open={open}>
           { instructions }
