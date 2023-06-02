@@ -1,18 +1,18 @@
 # Rehab Typing Test
 
-## Description
+### Description
 
 An application for occupational therapists to assist in the rehabilitation process (typing skills). This program calculates words-per-minute, typing accuracy, and identifies the most missed keys for the user; which then informs the therapist on assistive technology choice and treatment efficacy thereafter.
 
-## Features
+### Tech
 
 * JavaScript
-* React JS
+* ReactJS
 * MUI Core
 * React Router API
 * Context API
 
-## Instructions
+### Instructions
 
 ![Home](/src/assets/images/project-images/rehab-home.png)
 
@@ -25,10 +25,6 @@ An application for occupational therapists to assist in the rehabilitation proce
 ![Results](/src/assets/images/project-images/rehab-results.png)
 
 ## Live Demo
-
-
-
-
 
 ### `npm start`
 
