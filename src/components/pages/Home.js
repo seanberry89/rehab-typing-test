@@ -68,7 +68,7 @@ const Home = () => {
         <Stack sx={{ width: { xs: "100%", md: "50%" }, height: "100%", backgroundColor: theme => theme.palette.primary.main, px: 8 }} divider={<Divider color="#fff" orientation="horizontal" flexItem />} direction="column" justifyContent="center" alignItems="center">
             <Box sx={{ ...flexCenter, flexDirection: "column", height: "33%" }}><StyledIcon><Box component="img" src="https://cdn-icons-png.flaticon.com/512/850/850960.png" height="50px" width="50px" /></StyledIcon><Typography sx={{ mt: { xs: 1, md: 2 }, color: "#fff" }} fontSize={18} variant="body1">calculates words-per-minute</Typography></Box>
             <Box sx={{ ...flexCenter, flexDirection: "column", height: "33%" }}><StyledIcon><Box component="img" src="https://cdn-icons-png.flaticon.com/128/8010/8010221.png" height="50px" width="50px" /></StyledIcon><Typography sx={{ mt: { xs: 1, md: 2 }, color: "#fff" }} fontSize={18} variant="body1">measures typing accuracy</Typography></Box>
-            <Box sx={{ ...flexCenter, flexDirection: "column", height: "33%" }}><StyledIcon><Box component="img" src="https://cdn-icons-png.flaticon.com/512/5726/5726470.png" height="50px" width="50px" /></StyledIcon><Typography sx={{ mt: { xs: 1, md: 2 }, color: "#fff" }} fontSize={18} variant="body1">identifies the most missed letters</Typography></Box>
+            <Box sx={{ ...flexCenter, flexDirection: "column", height: "33%" }}><StyledIcon><Box component="img" src="https://cdn-icons-png.flaticon.com/512/5726/5726470.png" height="50px" width="50px" /></StyledIcon><Typography sx={{ mt: { xs: 1, md: 2 }, color: "#fff" }} fontSize={18} variant="body1">identifies most missed letters</Typography></Box>
         </Stack>
       </Stack>
     </Box>

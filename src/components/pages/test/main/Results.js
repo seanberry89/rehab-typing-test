@@ -84,7 +84,6 @@ const Results = ({ data, incorrectChar, correctChar, missedChar, setCurrent, set
   let total = correct + incorrect;
   let percentage = "percentage";
 
-
   useEffect(() => {
 
     setOpen(true);
@@ -140,7 +139,7 @@ const Results = ({ data, incorrectChar, correctChar, missedChar, setCurrent, set
 
       let formula = ((item.count / incorrect) * 100).toFixed(0);
 
-      item[percentage] = formula;
+      item[percentage] = +formula;
 
     });
 
@@ -217,6 +216,8 @@ const Results = ({ data, incorrectChar, correctChar, missedChar, setCurrent, set
     };
 
   };
+
+  console.log(missedChar);
 
 
   return (

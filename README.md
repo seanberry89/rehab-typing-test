@@ -1,10 +1,34 @@
-# Getting Started with Create React App
+# Rehab Typing Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+An application for occupational therapists to assist in the rehabilitation process (typing skills). This program calculates words-per-minute, typing accuracy, and identifies the most missed keys for the user; which then informs the therapist on assistive technology choice and treatment efficacy thereafter.
 
-In the project directory, you can run:
+## Features
+
+* JavaScript
+* React JS
+* MUI Core
+* React Router API
+* Context API
+
+## Instructions
+
+![Home](/src/assets/images/project-images/rehab-home.png)
+
+![Select](/src/assets/images/project-images/rehab-select.png)
+
+![Test](/src/assets/images/project-images/rehab-test.png)
+
+![Typing](/src/assets/images/project-images/rehab-typing.png)
+
+![Results](/src/assets/images/project-images/rehab-results.png)
+
+## Live Demo
+
+
+
+
 
 ### `npm start`
 

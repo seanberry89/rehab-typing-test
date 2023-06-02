@@ -50,7 +50,7 @@ const Outgoing = ({ outgoing, data }) => {
           </Fragment>
         )
 
-        }).slice(-25)}
+        }).slice(-24)}
 
       { large && outgoing?.map((item, index) => {
 
