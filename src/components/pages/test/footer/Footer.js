@@ -153,7 +153,7 @@ const Footer = () => {
 
   const instructions = (
 
-    <Paper sx={{ position: "relative", height: "100%", width: "300px" }}>
+    <Paper sx={{ position: "relative", height: { xs: "auto", md: "100%" }, width: "300px", pb: { xs: 2, md: 0 } }}>
       <CloseButton sx={{ position: "absolute", top: 10, right: 10 }} onClick={onClose}><CloseIcon /></CloseButton>
       <Stack sx={{ pt: 6, px: 2 }} direction="column" justifyContent="center" alignItems="center">
         <Typography sx={{ pb: 0.5 }} color="#3C4551" fontWeight={700} fontSize={20}>Instructions</Typography>

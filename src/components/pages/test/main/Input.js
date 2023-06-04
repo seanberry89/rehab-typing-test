@@ -185,7 +185,7 @@ const Input = ({ data, current, incoming, outgoing, setCurrent, setIncoming, set
 
       <Stack direction="column" justifyContent="center" alignItems="center" spacing={3}>
 
-        <Paper sx={{ position: "relative", width: { xs: "400px", sm: "550px", md: "850px", lg: "1000px" }, height: { xs: "145px", md: "150px" }, borderRadius: 5, py: 6 }} elevation={10}>
+        <Paper sx={{ position: "relative", width: { xs: "350px", sm: "550px", md: "850px", lg: "1000px" }, height: { xs: "145px", md: "150px" }, borderRadius: 5, py: 6 }} elevation={10}>
 
           <Fade />
 

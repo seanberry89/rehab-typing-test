@@ -70,7 +70,7 @@ const Test = () => {
 
           <Header data={data} minutes={minutes} seconds={seconds} />
 
-          <Stack sx={{ height: "100%" }} direction="column" justifyContent="center" alignItems="center" spacing={2}>
+          <Stack sx={{ height: "100%" }} direction="column" justifyContent="center" alignItems="center" spacing={{ xs: 0, md: 2 }}>
 
             <Timer minutes={minutes} seconds={seconds} />
 

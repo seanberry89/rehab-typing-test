@@ -83,8 +83,8 @@ const LeftMobileLink = styled(Link) `
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
-  height: 125px;
-  width: 100px;
+  height: 150px;
+  width: 125px;
   margin: 25px;
   border-radius: 25px;
   text-decoration: none;
@@ -104,8 +104,8 @@ const MiddleMobileLink = styled(Link)`
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
-  height: 125px;
-  width: 100px;
+  height: 150px;
+  width: 125px;
   margin: 25px;
   border-radius: 25px;
   text-decoration: none;
@@ -125,8 +125,8 @@ const RightMobileLink = styled(Link)`
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.5);
-  height: 125px;
-  width: 100px;
+  height: 150px;
+  width: 125px;
   margin: 25px;
   border-radius: 25px;
   text-decoration: none;
@@ -188,26 +188,25 @@ const Select = () => {
     <Box sx={{ height: "100vh", background: theme => theme.palette.primary.main }}>
 
       { !loading ? (
+
         <Fragment>
           <Stack sx={{ height: "100%", px: 2 }} direction="column" justifyContent="center" alignItems="center" spacing={{ xs: 2, sm: 5 }}>
 
               { mobile ? (
 
                 <Fragment>
-                  <Box>
-                    <Typography color="#fff" fontSize={24} variant="h5">Select the length of your typing test:</Typography>
-                  </Box>
-                  <Stack direction="column" justifyContent="space-evenly" alignItems="center">
+                  <Typography color="#fff" fontSize={22}>Select the length of your typing test:</Typography>
+                  <Stack direction="row" justifyContent="center" alignItems="center">
                     <LeftMobileLink style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${scrabbleImg})`, backgroundSize: "cover" }} to="/test">
-                      <Typography sx={{ pb: 3 }} variant="h2" color="#fff" fontWeight={900} fontSize={32} onClick={clickOne}>1-min</Typography>
+                      <Typography sx={{ pb: 3 }} color="#fff" fontWeight={900} fontSize={40} onClick={clickOne}>1-min</Typography>
                     </LeftMobileLink>
                     <MiddleMobileLink style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${typewriterImg})`, backgroundSize: "cover" }} to="/test">
-                      <Typography sx={{ pb: 3 }} variant="h2" color="#fff" fontWeight={900} fontSize={32} onClick={clickThree}>3-min</Typography>
+                      <Typography sx={{ pb: 3 }} color="#fff" fontWeight={900} fontSize={40} onClick={clickThree}>3-min</Typography>
                     </MiddleMobileLink>
-                    <RightMobileLink style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${laptopImg})`, backgroundSize: "cover" }} to="/test">
-                      <Typography sx={{ pb: 3 }} variant="h2" color="#fff" fontWeight={900} fontSize={32} onClick={clickFive}>5-min</Typography>
-                    </RightMobileLink>
                   </Stack>
+                  <RightMobileLink style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${laptopImg})`, backgroundSize: "cover" }} to="/test">
+                    <Typography sx={{ pb: 3 }} color="#fff" fontWeight={900} fontSize={40} onClick={clickFive}>5-min</Typography>
+                  </RightMobileLink>
                 </Fragment>
 
               ) : (
@@ -235,6 +234,7 @@ const Select = () => {
         </Fragment>
 
       ) : ( <Loading /> )}
+
     </Box>
   );
 };

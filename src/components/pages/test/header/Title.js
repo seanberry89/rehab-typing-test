@@ -29,8 +29,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiRing color="#FBC841" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#FBC841", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #FBC841", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#FBC841", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #FBC841", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -41,8 +41,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiRing color="#FBC841" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#FBC841", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #FBC841", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#FBC841", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #FBC841", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -53,8 +53,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiRing color="#FBC841" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#FBC841", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #FBC841", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#FBC841", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #FBC841", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -65,8 +65,8 @@ const Title = ({ data }) => {
             <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
               <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiGems color="#A8A9AD" size={35} /></Box>
               <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-                <Box sx={{ backgroundColor: "#A8A9AD", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-                <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #A8A9AD", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+                <Box sx={{ backgroundColor: "#A8A9AD", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+                <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #A8A9AD", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
               </Stack>
             </Stack>
         </Paper>
@@ -77,8 +77,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiGems color="#A8A9AD" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#A8A9AD", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #A8A9AD", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#A8A9AD", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #A8A9AD", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -89,8 +89,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiGems color="#A8A9AD" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#A8A9AD", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #A8A9AD", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#A8A9AD", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #A8A9AD", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -101,8 +101,8 @@ const Title = ({ data }) => {
             <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
               <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiForest color="#136207" size={35} /></Box>
               <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-                <Box sx={{ backgroundColor: "#136207", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-                <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #136207", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+                <Box sx={{ backgroundColor: "#136207", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+                <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #136207", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
               </Stack>
             </Stack>
           </Paper>
@@ -113,8 +113,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><FaSnowflake color="#99C4CE" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#99C4CE", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #99C4CE", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#99C4CE", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #99C4CE", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -125,8 +125,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiMagicBroom color="#964E02" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#964E02", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #964E02", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#964E02", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #964E02", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -137,8 +137,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiMagicBroom color="#964E02" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#964E02", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #964E02", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#964E02", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "15px", md: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #964E02", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -149,8 +149,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiMagicBroom color="#964E02" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#964E02", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #964E02", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#964E02", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #964E02", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
@@ -161,8 +161,8 @@ const Title = ({ data }) => {
           <Stack sx={{ width: "100%" }} direction="row" justifyContent="center" alignItems="center">
             <Box sx={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}><GiDervishSwords color="#967bb6" size={35} /></Box>
             <Stack sx={{ textAlign: "center", width: "80%" }} direction="column" justifyContent="center" alignItems="center">
-              <Box sx={{ backgroundColor: "#967bb6", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "18px", md: "20px", lg: "20px" }}>{data.title}</Typography></Box>
-              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #967bb6", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "17px", md: "17px", lg: "17px" }}>{data.chapter}</Typography></Box>
+              <Box sx={{ backgroundColor: "#967bb6", width: "100%" }}><Typography color="#FFF" fontWeight={700} fontSize={{ xs: "16px", md: "20px" }}>{data.title}</Typography></Box>
+              <Box sx={{ backgroundColor: "fff", borderLeft: "2px solid #967bb6", width: "100%" }}><Typography fontWeight={500} fontSize={{ xs: "16px", md: "17px" }}>{data.chapter}</Typography></Box>
             </Stack>
           </Stack>
         </Paper>
