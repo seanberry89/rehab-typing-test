@@ -26,6 +26,9 @@ const StyledPaper = styled(Paper) `
   text-align: center;
   background-color: #2F7ABF;
   color: #fff;
+  height: 50px;
+  width: 125px;
+  font-size: 16px;
   font-weight: bold;
   border-radius: 15px;
 
@@ -33,6 +36,8 @@ const StyledPaper = styled(Paper) `
 
 const StyledLogo = styled(Box)`
 
+  width: 100px;
+  height: 125px;
   object-fit: cover;
   padding-top: 25px;
 
@@ -56,9 +61,9 @@ const Home = () => {
     <Box sx={{ height: "100vh" }}>
       <Stack sx={{ height: "100%", width: "100%" }} direction={{ xs: "column", md: "row" }} justifyContent="center" alignItems="center">
         <Stack sx={{ width: { xs: "100%", md: "50%" }, height: "75%", pb: 2 }} direction="column" justifyContent="center" alignItems="center">
-          <StyledLogo component="img" src={RehabLogo} sx={{ width: { xs: "100px", md: "125px" }, height: { xs: "100px", md: "125px" } }} />
+          <StyledLogo component="img" src={RehabLogo} />
           <Typography fontSize={{ xs: "30px", md: "40px" }} color="#3C4551" fontWeight={700}>Rehab Typing Test</Typography>
-          <StartLink to="/select"><StyledPaper sx={{ height: { xs: "40px", md: "50px" }, width: { xs: "100px", md: "125px" }, fontSize: { xs: "14px", md: "16px" } }} elevation={10}>Let's Start</StyledPaper></StartLink>
+          <StartLink to="/select"><StyledPaper elevation={10}>Let's Start</StyledPaper></StartLink>
         </Stack>
         <Stack sx={{ width: { xs: "100%", md: "50%" }, height: "100%", backgroundColor: theme => theme.palette.primary.main, px: 8 }} divider={<Divider color="#fff" orientation="horizontal" flexItem />} direction="column" justifyContent="center" alignItems="center">
             <Box sx={{ ...flexCenter, flexDirection: "column", height: "33%" }}><StyledIcon><Box component="img" src="https://cdn-icons-png.flaticon.com/512/850/850960.png" height={{ xs: "32px", md: "50px" }} width={{ xs: "32px", md: "50px" }} /></StyledIcon><Typography sx={{ mt: { xs: 0.5, md: 2 }, color: "#fff" }} fontSize={{ xs: 14, md: 18 }}>calculates words-per-minute</Typography></Box>
