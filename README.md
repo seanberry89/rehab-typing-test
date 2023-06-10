@@ -13,7 +13,7 @@ An application for occupational therapists to assist in the rehabilitation proce
 * React Router API
 * Context API
 
-### Instructions
+### Traverse the UI
 
 ![Home](/src/assets/images/project-images/rehab-home.png)
 
