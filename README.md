@@ -24,4 +24,4 @@ An application for occupational therapists to assist in the rehabilitation proce
 
 ![Results](/src/assets/images/project-images/rehab-results.png)
 
-[### Live Demo](https://rehabtypingtest.com)
+[Live Demo](https://rehabtypingtest.com)
