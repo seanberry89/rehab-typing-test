@@ -1,4 +1,5 @@
 # Rehab Typing Test
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bf508f5b-09cf-412f-966b-02de70031006/deploy-status)](https://app.netlify.com/sites/cheery-heliotrope-bd55dd/deploys)
 
 ### Description
 
