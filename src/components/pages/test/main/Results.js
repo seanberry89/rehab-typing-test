@@ -100,6 +100,7 @@ const Results = ({ data, incorrectChar, correctChar, missedChar, setCurrent, set
 
     updatePercentages();
 
+    // eslint-disable-next-line
   }, [missedChar]);
 
 

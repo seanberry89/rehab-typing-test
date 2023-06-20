@@ -120,6 +120,7 @@ const useKeyDown = (data) => {
 
     updateMissedCharacters();
 
+    // eslint-disable-next-line
   }, [incorrectChar]);
 
 
